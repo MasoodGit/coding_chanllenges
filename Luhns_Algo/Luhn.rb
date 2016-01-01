@@ -4,11 +4,17 @@ class Luhn
 
   end
 
+  # returns true if number is valid Luhn's number
+  # otherwise false
   def is_valid?(number)
 
     checksum = 0
+
+    # break number into an array of digits
     digits = digits_of(number)
+
     i = 0
+    # start from the right most number in the array
     digits.reverse.each do |digit|
       i += 1
       if i % 2 == 0
@@ -21,30 +27,16 @@ class Luhn
     return checksum % 10 == 0
   end
 
-
+  # returns an array of digits
+  # for a given number
   def digits_of(number)
     number.to_s.split('').map { |d| d.to_i}
   end
 
-  def digits_at_odd_index(arr)
-    sub_arr = []
-    arr.each_with_index {|val,index|
-      sub_arr << val if index % 2 != 0
-    }
-    return sub_arr
-  end
-
-  def digits_at_even_index(arr)
-    sub_arr = []
-    arr.each_with_index{ |val,index|
-      sub_arr << val if index % 2 == 0
-    }
-    return sub_arr
-  end
-
+  # returns sum of numbers in an
+  # array
   def sum_array(arr)
     arr.reduce(:+)
   end
-
 
 end
